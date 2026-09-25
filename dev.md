@@ -46,3 +46,10 @@ If I use an IIFE for this component, I need to return some things in an object:
 
 This will be a factory function that takes the `playerName` parameter and returns player objects with the properties `playerName`, `playerNum` and `playerMark`.
 
+#### playerId incrementor
+
+I had to create a separate function to increment the player's ID value every time the player creating factory is called. This will increase the component count to four.
+
+### gameBrain
+
+The `gameBrain` handles the flow of the game.

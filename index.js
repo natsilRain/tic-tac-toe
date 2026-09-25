@@ -8,7 +8,7 @@ const gameBoard = (function () {
     const createNewBoard = () => {
         board = [];
         for (i = 0; i < rows; i++) {
-            board[i] = Array(columns).fill("x");
+            board[i] = Array(columns).fill("-");
         };
     };
 
@@ -17,11 +17,13 @@ const gameBoard = (function () {
     const getBoard = () => board;
 
     const insertMark = (rowNo, columnNo, playerMark) => {
-        if (board[rowNo][columnNo] === " ") {
-            return "Error: Space already marked!"
+        if (!(board[rowNo][columnNo] === "-")) {
+            console.log("Error: Space already marked!");
+            return false;
         };
 
         board[rowNo][columnNo] = playerMark.toString();
+        return true;
     }
 
     const displayBoard = () => {
@@ -31,8 +33,6 @@ const gameBoard = (function () {
 
     return {createNewBoard, getBoard, insertMark, displayBoard};
 })();
-
-gameBoard.displayBoard();
 
 // Player ID incrementor
 
@@ -61,8 +61,46 @@ function createPlayer(playerName) {
     return {playerId, playerName, playerMark};
 }
 
-const natsil = createPlayer("natsil");
-const rain = createPlayer("rain");
+// gameBrain IIFE
 
-console.log(natsil);
-console.log(rain);
+const gameBrain = (function () {
+    alert("Welcome to Tic-Tac-Toe!");
+
+    let playerName = prompt("Name of player (X) ?");
+    const player1 = createPlayer(playerName);
+
+    playerName = prompt("Name of player (O) ?");
+    const player2 = createPlayer(playerName);
+
+    const players = [player1, player2];
+
+    let activePlayer = players[0];
+
+    const switchPlayerTurn = () => {
+        if (activePlayer === players[0]) {
+            activePlayer = players[1];
+        } else {
+            activePlayer = players[0];
+        };
+    };
+
+    const getActivePlayer = () => activePlayer;
+
+    const displayNewTurn = () => {
+        gameBoard.displayBoard();
+        console.log(`It's ${getActivePlayer().playerName}'s turn!`);
+    };
+
+    const playTurn = (rowNo, columnNo) => {
+        if (gameBoard.insertMark(rowNo, columnNo, getActivePlayer().playerMark)) {
+            switchPlayerTurn();
+            displayNewTurn();
+        } else {
+            displayNewTurn();
+        };
+    };
+
+    displayNewTurn();
+
+    return {playTurn, getActivePlayer};
+})();
