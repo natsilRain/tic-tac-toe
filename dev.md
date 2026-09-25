@@ -52,4 +52,8 @@ I had to create a separate function to increment the player's ID value every tim
 
 ### gameBrain
 
-The `gameBrain` handles the flow of the game.
+The `gameBrain` handles the flow of the game. It will create the player objects, handle display of the game board, and alternate between asking each player for their input.
+
+This will also be an IIFE. It will return:
+
+- `playTurn`: the function players use to play a turn.

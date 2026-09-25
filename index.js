@@ -102,5 +102,5 @@ const gameBrain = (function () {
 
     displayNewTurn();
 
-    return {playTurn, getActivePlayer};
+    return {playTurn};
 })();
