@@ -20,7 +20,7 @@ const gameBoard = (function () {
         if (board[rowNo][columnNo] === " ") {
             return "Error: Space already marked!"
         };
-        
+
         board[rowNo][columnNo] = playerMark.toString();
     }
 
@@ -33,3 +33,36 @@ const gameBoard = (function () {
 })();
 
 gameBoard.displayBoard();
+
+// Player ID incrementor
+
+function incrementId() {
+    let id = 0;
+
+    return function increment () {
+        id++;
+        return id;
+    };
+};
+
+const newId = incrementId();
+
+// createPlayer factory function
+
+function createPlayer(playerName) {
+    const playerId = newId();
+
+    if (playerId === 1) {
+        playerMark = "X";
+    } else {
+        playerMark = "O";
+    }
+    
+    return {playerId, playerName, playerMark};
+}
+
+const natsil = createPlayer("natsil");
+const rain = createPlayer("rain");
+
+console.log(natsil);
+console.log(rain);

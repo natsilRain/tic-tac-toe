@@ -24,7 +24,7 @@ This project needs to be completed using encapsulation, the module pattern (via 
 The entire game will be contained within three components:
 
 1. gameBoard
-2. player
+2. createPlayer
 3. gameBrain
 
 ### gameBoard
@@ -42,6 +42,7 @@ If I use an IIFE for this component, I need to return some things in an object:
 - `createNewBoard`: method to create an empty board (for new rounds).
 - `displayBoard`: method to visualize game board in the console.
 
-### player
+### createPlayer
 
 This will be a factory function that takes the `playerName` parameter and returns player objects with the properties `playerName`, `playerNum` and `playerMark`.
+
