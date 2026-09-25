@@ -16,8 +16,12 @@ const gameBoard = (function () {
 
     const getBoard = () => board;
 
-    const insertMark = (row, column, playerMark) => {
-        board[row][column] = playerMark.toString();
+    const insertMark = (rowNo, columnNo, playerMark) => {
+        if (board[rowNo][columnNo] === " ") {
+            return "Error: Space already marked!"
+        };
+        
+        board[rowNo][columnNo] = playerMark.toString();
     }
 
     const displayBoard = () => {

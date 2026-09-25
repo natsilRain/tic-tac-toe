@@ -41,3 +41,7 @@ If I use an IIFE for this component, I need to return some things in an object:
 - `insertMark`: method to update square value (this is the modification function).
 - `createNewBoard`: method to create an empty board (for new rounds).
 - `displayBoard`: method to visualize game board in the console.
+
+### player
+
+This will be a factory function that takes the `playerName` parameter and returns player objects with the properties `playerName`, `playerNum` and `playerMark`.
