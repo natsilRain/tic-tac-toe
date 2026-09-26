@@ -57,3 +57,19 @@ The `gameBrain` handles the flow of the game. It will create the player objects,
 This will also be an IIFE. It will return:
 
 - `playTurn`: the function players use to play a turn.
+
+I ended up coding this component without planning too much. However, it works, for now. 
+
+First, it creates a `gameStart` function that checks if the board is empty and creates a new one if not; since this function is only called at the beginning of the game or when the game is restarted. It then takes the player names and returns an array with 2 player objects.
+
+The `switchPlayerTurn` function is self-explanatory, same for `displayNewTurn`.
+
+The `checkWinner` function I had trouble with. It's a series of `for` loops that checks if any of the rows, columns, and diagonals of the board matrix has a matching set of characters and returns that character, or declares a draw.
+
+The `gameOver` function alerts the winning player and starts a new game if the player wants.
+
+Finally, the `playTurn` function takes a row index and a column index and either puts a mark there, stops from putting a mark on the same spot twice while allowing another turn for that player, and calls the `checkWinner` function to check for winners.
+
+## Designing the UI
+
+Since the console version is pretty much complete, I need to start work on the HTML/CSS. The question is, how do I link my clunky game engine to them?

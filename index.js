@@ -24,12 +24,12 @@ const gameBoard = (function () {
 
         board[rowNo][columnNo] = playerMark.toString();
         return true;
-    }
+    };
 
     const displayBoard = () => {
         let display = board.map((x) => x.join(" | ")).join("\n---------\n");
         console.log(display);
-    }
+    };
 
     return {createNewBoard, getBoard, insertMark, displayBoard};
 })();
