@@ -19,7 +19,7 @@ This project needs to be completed using encapsulation, the module pattern (via 
 8. Display which player won the game.
 9. Ask if the players want to play another round.
 
-## Code Structure
+## Code Structure for Console Edition
 
 The entire game will be contained within three components:
 
