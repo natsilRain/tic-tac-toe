@@ -42,7 +42,7 @@ ol, ul {
 
 /* CSS Styling */
 
-/* h1 {
+h1 {
     text-align: center;
 }
 
@@ -90,4 +90,4 @@ ol, ul {
 .square:nth-child(8),
 .square:nth-child(9) {
     border-bottom: none;
-} */
+}
