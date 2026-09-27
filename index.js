@@ -99,6 +99,7 @@ const gameBrain = (function () {
 
         displayNewTurn();
         dialog.close();
+        document.querySelector(".newGameForm").reset();
     });
 
     const switchPlayerTurn = () => {
