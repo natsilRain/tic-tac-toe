@@ -8,43 +8,21 @@ const gameBoard = (function () {
     const createNewBoard = () => {
         board = [];
         for (i = 0; i < rows; i++) {
-            board[i] = Array(columns).fill("");
-        };
-    };
-
-    const createSquares = () => {
-        const container = document.querySelector(".container");
-        
-        for (let i = 0; i < rows; i++) {
-            for (let j = 0; j < columns; j++) {
-                const square = document.createElement("div");
-                square.classList.add("square");
-                square.dataset.row = i;
-                square.dataset.column = j;
-                container.appendChild(square);
-            };
+            board[i] = Array(columns).fill("-");
         };
     };
 
     createNewBoard();
-    createSquares();
 
     const getBoard = () => board;
 
     const insertMark = (rowNo, columnNo, playerMark) => {
-        if (!(board[rowNo][columnNo] === "")) {
+        if (!(board[rowNo][columnNo] === "-")) {
             console.log("Error: Space already marked!");
             return false;
         };
 
         board[rowNo][columnNo] = playerMark.toString();
-
-        const square = document.querySelector(`.square[data-row="${rowNo}"][data-column="${columnNo}"]`);
-
-        if (square) {
-            square.textContent = playerMark;
-        }
-
         return true;
     };
 
@@ -87,7 +65,7 @@ function createPlayer(playerName) {
 
 const gameBrain = (function () {
     const gameStart = function () {
-        let boardEmpty = (x) => x === "";
+        let boardEmpty = (x) => x === "-";
         if (!(gameBoard.getBoard().every(boardEmpty))) {
             gameBoard.createNewBoard();
         };
@@ -125,18 +103,18 @@ const gameBrain = (function () {
         board = gameBoard.getBoard();
 
         for (let i = 0; i < 3; i++) {
-            if (board[i][0] !== "" && board[i][0] === board[i][1] && board[i][1] === board[i][2]) {
+            if (board[i][0] !== "-" && board[i][0] === board[i][1] && board[i][1] === board[i][2]) {
                 return board[i][0];
             };
         };
 
         for (let i = 0; i < 3; i++) {
-            if (board[0][i] !== "" && board[0][i] === board[1][i] && board[1][i] === board[2][i]) {
+            if (board[0][i] !== "-" && board[0][i] === board[1][i] && board[1][i] === board[2][i]) {
                 return board[0][i];
             };
         };
 
-        if (board[1][1] !== "") {
+        if (board[1][1] !== "-") {
             if (board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
                 return board[0][0];
             };
@@ -145,7 +123,7 @@ const gameBrain = (function () {
             };
         };
 
-        const squaresRemaining = board.some(row => row.includes(""));
+        const squaresRemaining = board.some(row => row.includes("-"));
 
         if (!squaresRemaining) {
             return "draw";
@@ -194,17 +172,6 @@ const gameBrain = (function () {
             displayNewTurn();
         };
     };
-
-    document.querySelector(".container").addEventListener("click", (e) => {
-        const target = e.target.closest(".square");
-
-        if (!target) return;
-
-        const row = target.dataset.row;
-        const column = target.dataset.column;
-
-        playTurn(row, column);
-    });
 
     displayNewTurn();
 

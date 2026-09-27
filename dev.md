@@ -48,7 +48,9 @@ This will be a factory function that takes the `playerName` parameter and return
 
 #### playerId incrementor
 
-I had to create a separate function to increment the player's ID value every time the player creating factory is called. This will increase the component count to four.
+~~I had to create a separate function to increment the player's ID value every time the player creating factory is called. This will increase the component count to four.~~
+
+I had to remove this cause it really doesn't work when I want to restart the game using the UI version restart button.
 
 ### gameBrain
 
