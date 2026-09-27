@@ -79,6 +79,7 @@ const gameBrain = (function () {
         players = [];
         activePlayer = null;
         isGameActive = false;
+        gameInfo.textContent = "";
 
         let boardEmpty = (x) => x === "";
         if (!(gameBoard.getBoard().every(boardEmpty))) {
@@ -96,6 +97,7 @@ const gameBrain = (function () {
         activePlayer = players[0];
         isGameActive = true;
 
+        displayNewTurn();
         dialog.close();
     });
 
@@ -110,6 +112,12 @@ const gameBrain = (function () {
     const getActivePlayer = () => activePlayer;
 
     gameStart();
+
+    const displayNewTurn = () => {
+        if (activePlayer) {
+            gameInfo.textContent = `${activePlayer.playerName}'s turn (${activePlayer.playerMark})`;
+        };
+    };
 
     const checkWinner = function () {
         const board = gameBoard.getBoard();
@@ -170,7 +178,7 @@ const gameBrain = (function () {
             };
 
             switchPlayerTurn();
-            // displayNewTurn();
+            displayNewTurn();
         };
     };
 
